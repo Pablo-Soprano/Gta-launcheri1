@@ -5,6 +5,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: GeoLifeRP-Launcher
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -18,4 +21,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: GeoLifeRP-Launcher-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: GeoLifeRP-Launcher/app/build/outputs/apk/debug/app-debug.apk
