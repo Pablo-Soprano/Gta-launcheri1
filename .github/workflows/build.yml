@@ -7,12 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Unzip project
+        run: |
+          mkdir -p _proj
+          for z in *.zip; do unzip -oq "$z" -d _proj; done
       - name: Find project
         id: p
         run: |
-          f=$(find . -name settings.gradle | head -1)
+          f=$(find _proj -name settings.gradle | head -1)
           if [ -z "$f" ]; then
-            echo "settings.gradle NOT FOUND. Files in repo:"
+            echo "settings.gradle NOT FOUND"
             find . -not -path "./.git/*" | head -60
             exit 1
           fi
